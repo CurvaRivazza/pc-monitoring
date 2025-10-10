@@ -12,8 +12,8 @@ namespace Core.Models
     {
         public string Name { get; set; }
         public SensorTypes Type { get; set; }
-        float Value { get; set; }  // текущее значение
-        string Identifier { get; set; }  // идентификатор датчика в системе
-        string ParentName { get; set; }  // название компонента владельца
+        public float Value { get; set; }  // текущее значение
+        public string Identifier { get; set; }  // идентификатор датчика в системе
+        public string ParentName { get; set; }  // название компонента владельца
     }
 }
