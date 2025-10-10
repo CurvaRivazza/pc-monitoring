@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\SensorTypes.cs" />
+    <Compile Include="Events\SensorDataUpdatedEventArgs.cs" />
     <Compile Include="Interfaces\ISensorDataProvider.cs" />
     <Compile Include="Models\SensorData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
