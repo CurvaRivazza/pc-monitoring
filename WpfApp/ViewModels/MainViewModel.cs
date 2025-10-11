@@ -12,13 +12,18 @@ namespace WpfApp.ViewModels
     // управляет навигацией между страницами
     public partial class MainViewModel : ObservableObject
     {
+        private readonly CpuMonitorViewModel _cpuMonitorViewModel;
+
         [ObservableProperty]
         private ObservableCollection<PageViewModel> _pages = new ObservableCollection<PageViewModel>();  // коллекция всех доступных страниц
+
         private PageViewModel _currentPage;  // текущая выбранная страница
 
-        public MainViewModel()
+        public MainViewModel(CpuMonitorViewModel cpuMonitorViewModel)
         {
-            
+            _cpuMonitorViewModel = cpuMonitorViewModel;
+            _pages.Add(_cpuMonitorViewModel);
+            _currentPage = _pages[0];
         }
 
         [RelayCommand]
