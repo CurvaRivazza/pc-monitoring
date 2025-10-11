@@ -188,6 +188,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\TemperatureToColorConverter.cs" />
     <Compile Include="ViewModels\CpuMonitorViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PageViewModel.cs" />
@@ -224,7 +225,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
     <Folder Include="Styles\" />
     <Folder Include="Views\Controls\" />
     <Folder Include="Views\Pages\" />
