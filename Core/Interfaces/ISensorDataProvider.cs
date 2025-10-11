@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Core.Interfaces
 {
     // абстракция для источника данных с датчиков
-    public interface ISensorDataProvider
+    public interface ISensorDataProvider : IDisposable
     {
         Task<IEnumerable<SensorData>> GetSensorDataAsync();
     }
