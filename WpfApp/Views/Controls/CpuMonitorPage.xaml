@@ -9,6 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <converters:TemperatureToColorConverter x:Key="TemperatureColorConverter"/>
+        <converters:LoadProgressBarVisibilityConverter x:Key="LoadVisibilityConverter"/>
     </UserControl.Resources>
 
     <ScrollViewer>
@@ -97,7 +98,7 @@
                                                  Value="{Binding Value}"
                                                  Maximum="100"
                                                  Height="16"
-                                                 Visibility="{Binding Type}"/>
+                                                 Visibility="{Binding Type, Converter={StaticResource LoadVisibilityConverter}}"/>
 
                                 <TextBlock Grid.Column="2"
                                                Text="{Binding Value, StringFormat={}{0:F2}}"
