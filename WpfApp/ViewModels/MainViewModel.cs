@@ -14,10 +14,21 @@ namespace WpfApp.ViewModels
     {
         private readonly CpuMonitorViewModel _cpuMonitorViewModel;
 
-        [ObservableProperty]
-        private ObservableCollection<PageViewModel> _pages = new ObservableCollection<PageViewModel>();  // коллекция всех доступных страниц
+        public ObservableCollection<PageViewModel> _pages = new ObservableCollection<PageViewModel>();  // коллекция всех доступных страниц
 
         private PageViewModel _currentPage;  // текущая выбранная страница
+
+        public ObservableCollection<PageViewModel> Pages
+        {
+            get => _pages;
+            set => SetProperty(ref _pages, value);
+        }
+
+        public PageViewModel CurrentPage
+        {
+            get => _currentPage;
+            set => SetProperty(ref _currentPage, value);
+        }
 
         public MainViewModel(CpuMonitorViewModel cpuMonitorViewModel)
         {
@@ -29,7 +40,7 @@ namespace WpfApp.ViewModels
         [RelayCommand]
         private void NavigateToPage(PageViewModel page)
         {
-            _currentPage = page;
+            CurrentPage = page;
         }
     }
 }
