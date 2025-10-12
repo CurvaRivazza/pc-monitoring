@@ -4,10 +4,109 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.Views.Controls"
+             xmlns:converters="clr-namespace:WpfApp.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Процессор"
-                       FontSize="24"/>
-    </Grid>
+    <UserControl.Resources>
+        <converters:TemperatureToColorConverter x:Key="TemperatureColorConverter"/>
+    </UserControl.Resources>
+
+    <ScrollViewer>
+        <StackPanel>
+            <Border Background="#e3f2fd"
+                    BorderBrush="#90caf9"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="15"
+                    Margin="0,0,0,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0"
+                                HorizontalAlignment="Center">
+                        <TextBlock Text="Температура"
+                                   FontSize="14"
+                                   Foreground="#666"/>
+                        <TextBlock Text="{Binding CpuTemperature, StringFormat={}{0:F1}°C}"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Foreground="{Binding CpuTemperature, Converter={StaticResource TemperatureColorConverter}}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                HorizontalAlignment="Center">
+                        <TextBlock Text="Загрузка"
+                                   FontSize="14"
+                                   Foreground="#666"/>
+                        <ProgressBar Value="{Binding CpuLoad}"
+                                     Maximum="100"
+                                     Height="20"
+                                     Width="120"
+                                     Margin="0,5"/>
+                        <TextBlock Text="{Binding CpuLoad, StringFormat={}{0:F1}%}"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2"
+                                HorizontalAlignment="Center">
+                        <TextBlock Text="Мощность"
+                                   FontSize="14"
+                                   Foreground="#666"/>
+                        <TextBlock Text="{Binding CpuPower, StringFormat={}{0:F1}W}"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Foreground="#4caf50"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <TextBlock Text="Детальная информация"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Margin="0,0,0,10"/>
+            <ItemsControl ItemsSource="{Binding CpuSensors}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#ddd"
+                                    BorderThickness="1"
+                                    CornerRadius="4"
+                                    Margin="0,2"
+                                    Padding="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="80"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="{Binding Name}"
+                                                   FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding ParentName}"
+                                                   FontSize="11"
+                                                   Foreground="#666"/>
+                                </StackPanel>
+
+                                <ProgressBar Grid.Column="1"
+                                                 Value="{Binding Value}"
+                                                 Maximum="100"
+                                                 Height="16"
+                                                 Visibility="{Binding Type}"/>
+
+                                <TextBlock Grid.Column="2"
+                                               Text="{Binding Value, StringFormat={}{0:F2}}"
+                                               HorizontalAlignment="Right"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>
