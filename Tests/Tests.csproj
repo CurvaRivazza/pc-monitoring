@@ -28,4 +28,11 @@
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core.Tests\Models\" />
+    <Folder Include="Sensors.Tests\Providers\" />
+    <Folder Include="Sensors.Tests\Services\" />
+    <Folder Include="WpfApp.Tests\ViewModels\" />
+  </ItemGroup>
+
 </Project>
