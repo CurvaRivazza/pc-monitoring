@@ -40,5 +40,25 @@ namespace Tests.WpfApp.Tests.Converters
 
             Assert.That(result, Is.EqualTo(Brushes.Orange), $"Температура {temperature}°C должна возвращать оранжевый цвет");
         }
+
+        [TestCase(80f)]
+        [TestCase(85.5f)]
+        [TestCase(95f)]
+        [TestCase(100f)]
+        [TestCase(120f)]
+        public void Convert_TemperatureIsHigh(float temperature)
+        {
+            Object? result = _converter.Convert(temperature, typeof(Brush), null, null);
+            Assert.That(result, Is.EqualTo(Brushes.Red), $"Температура {temperature}°C должна возвращать оранжевый цвет");
+        }
+
+        [TestCase(-10f)]
+        [TestCase(-1f)]
+        [TestCase(-0.1f)]
+        public void Convert_TemperatureIsNegative_ReturnsGray(float temperature)
+        {
+            Object? result = _converter.Convert(temperature, typeof(Brush), null, null);
+            Assert.That(result, Is.EqualTo(Brushes.Gray), $"Температура {temperature}°C должна возвращать серый цвет");
+        }
     }
 }
