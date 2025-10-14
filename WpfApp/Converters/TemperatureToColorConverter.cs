@@ -16,6 +16,11 @@ namespace WpfApp.Converters
         {
             if (value is float temperature)
             {
+                if(float.IsNaN(temperature) || float.IsInfinity(temperature)) 
+                {
+                    return Brushes.Gray;
+                }
+
                 return temperature switch
                 {
                     < 0 => Brushes.Gray,

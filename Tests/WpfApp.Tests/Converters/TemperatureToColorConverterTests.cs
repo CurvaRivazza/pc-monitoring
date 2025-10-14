@@ -117,7 +117,7 @@ namespace Tests.WpfApp.Tests.Converters
         {
             float temperature = float.MaxValue;
             Object? result = _converter.Convert(temperature, typeof(Brush), null, null);
-            Assert.That(result, Is.EqualTo(Brushes.Gray), $"Температура {temperature}°C должено возвращать красный цвет");
+            Assert.That(result, Is.EqualTo(Brushes.Red), $"Температура {temperature}°C должна возвращать красный цвет");
         }
     }
 }
