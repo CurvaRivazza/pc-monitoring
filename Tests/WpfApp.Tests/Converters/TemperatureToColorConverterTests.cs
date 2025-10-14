@@ -119,5 +119,15 @@ namespace Tests.WpfApp.Tests.Converters
             Object? result = _converter.Convert(temperature, typeof(Brush), null, null);
             Assert.That(result, Is.EqualTo(Brushes.Red), $"Температура {temperature}°C должна возвращать красный цвет");
         }
+
+        [TestCase(typeof(Brush))]
+        [TestCase(typeof(object))]
+        [TestCase(typeof(System.Windows.Media.Color))]
+        public void Convert_DifferentTargetTypes_ReturnsBrush(Type targetType)
+        {
+            float temperature = 60f;
+            Object? result = _converter.Convert(temperature, targetType, null, null);
+            Assert.That(result, Is.InstanceOf<Brush>(), $"Для типа {targetType} должен возвращаться Brush");
+        }
     }
 }
