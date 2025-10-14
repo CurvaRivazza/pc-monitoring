@@ -85,6 +85,21 @@ namespace Tests.WpfApp.Tests.Converters
             Assert.That(result, Is.EqualTo(Brushes.Red), $"Температура {temperature}°C должна возвращать красный цвет");
         }
 
+        [TestCase("some text")]
+        [TestCase(null)]
+        [TestCase(100)]
+        public void Convert_StringValue_ReturnsGray(object? temperature)
+        {
+            Object? result = _converter.Convert(temperature, typeof(Brush), null, null);
+            Assert.That(result, Is.EqualTo(Brushes.Gray), $"Некорректное значение температуры ({temperature}) должно возвращать серый цвет");
+        }
 
+        [Test]
+        public void Convert_ObjectInstance_ReturnsGray()
+        {
+            Object temperature = new object();
+            Object? result = _converter.Convert(temperature, typeof(Brush), null, null);
+            Assert.That(result, Is.EqualTo(Brushes.Gray), $"Пустой объект должен возвращать серый цвет");
+        }
     }
 }
