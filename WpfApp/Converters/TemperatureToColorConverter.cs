@@ -16,18 +16,14 @@ namespace WpfApp.Converters
         {
             if (value is float temperature)
             {
-                if (temperature < 60)
+                return temperature switch
                 {
-                    return Brushes.Green;
-                }
-                if (temperature >= 60 && temperature < 80)
-                {
-                    return Brushes.Orange;
-                }
-                if (temperature >= 80)
-                {
-                    return Brushes.Red;
-                }
+                    < 0 => Brushes.Gray,
+                    < 60 => Brushes.Green,
+                    >= 60 and < 80 => Brushes.Orange,
+                    >= 80 => Brushes.Red,
+                    _ => Brushes.Gray
+                };
             }
             return Brushes.Gray;
         }
