@@ -101,5 +101,23 @@ namespace Tests.WpfApp.Tests.Converters
             Object? result = _converter.Convert(temperature, typeof(Brush), null, null);
             Assert.That(result, Is.EqualTo(Brushes.Gray), $"Пустой объект должен возвращать серый цвет");
         }
+
+        [TestCase(float.MinValue)]
+        [TestCase(float.NaN)]
+        [TestCase(float.PositiveInfinity)]
+        [TestCase(float.NegativeInfinity)]
+        public void Convert_ExtremeValues_ReturnsGray(float temperature)
+        {
+            Object? result = _converter.Convert(temperature, typeof(Brush), null, null);
+            Assert.That(result, Is.EqualTo(Brushes.Gray), $"Значение {temperature} должно возвращать серый цвет");
+        }
+
+        [Test]
+        public void Convert_ExtremeValues_ReturnsRed()
+        {
+            float temperature = float.MaxValue;
+            Object? result = _converter.Convert(temperature, typeof(Brush), null, null);
+            Assert.That(result, Is.EqualTo(Brushes.Gray), $"Температура {temperature}°C должено возвращать красный цвет");
+        }
     }
 }
